@@ -1,0 +1,20 @@
+[
+  {
+    "marca": "Alfa Romeo",
+    "modelo": "Giulia",
+    "precio": "Precio de lista no encontrado",
+    "nuevos_desde": "Precio nuevo no encontrado",
+    "usados_desde": "$32.900.000",
+    "descripcion": "La Alfa Romeo Giulia es una berlina ",
+    "versiones": [
+      {
+        "version": "2.9 Quadrifoglio",
+        "precio": "Versión sin precio"
+      },
+      {
+        "version": "2.0T Veloce",
+        "precio": "Versión sin precio"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 import { AstraDB } from "@datastax/astra-db-ts";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import "dotenv/config";
-import sampleData from "./template_data.json";
+import sampleData from "./autos_actualizados_narrativo.json";
 import OpenAI from "openai";
 import { SimilarityMetric } from "../app/hooks/useConfiguration";
 
@@ -52,7 +52,7 @@ const loadSampleData = async (
   similarity_metric: SimilarityMetric = "cosine"
 ) => {
   const collection = await astraDb.collection(`chat_${similarity_metric}`);
-  for await (const { url, title, content } of sampleData) {
+  for await (const { marca, modelo, content } of sampleData) {
     const chunks = await splitter.splitText(content);
     let i = 0;
     for await (const chunk of chunks) {
@@ -62,10 +62,10 @@ const loadSampleData = async (
       });
 
       const res = await collection.insertOne({
-        document_id: `${url}-${i}`,
+        document_id: `${marca}-${i}`,
         $vector: data[0]?.embedding,
-        url,
-        title,
+        marca,
+        modelo,
         content: chunk,
       });
       i++;

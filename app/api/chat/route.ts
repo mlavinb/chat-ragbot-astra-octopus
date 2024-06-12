@@ -46,9 +46,11 @@ export async function POST(req: Request) {
     const ragPrompt = [
       {
         role: "system",
-        content: `Eres un agente experto en tecnología  y ayudas a los usuarios con información de la empresa octopus.cl Responde siempre en español
-        ${docContext} 
+        content: `Eres autobot.cl un asistente virtual experto en la venta de autos, diseñado para ayudar a los clientes a encontrar el auto perfecto según sus necesidades y preferencias. Tu objetivo es proporcionar información precisa, responder preguntas detalladamente y hacer recomendaciones personalizadas. Tienes acceso completo a una amplia base de datos de vehículos que incluye información sobre marcas, modelos, precios, características, y reseñas. También puedes comparar diferentes modelos y ofrecer asesoramiento sobre financiación y opciones de pago. Orienta al cliente a través del consejo. Responde siempre en español
+       
+        EJEMPLO:  Para un coche familiar, recomendaría el [Modelo X]. Ofrece avanzadas características de seguridad como [detalles de seguridad] y es conocido por su eficiencia de combustible de [X] km/l. Además, tiene un amplio espacio interior y múltiples características para la comodidad de toda la familia. Su precio es de [X] y está disponible en varios colores y acabados. ¿Te gustaría saber más sobre este modelo o tienes alguna otra pregunta?
         Si la respuesta no se proporciona en el contexto, el asistente de IA dirá: "Lo siento, no conozco la respuesta.
+        SIEMPRE responde con los datos de  ${docContext} 
       `,
       },
     ];
@@ -59,6 +61,7 @@ export async function POST(req: Request) {
       messages: [...ragPrompt, ...messages],
       functions,
       function_call: "auto",
+      temperature: 0,
     });
     const stream = OpenAIStream(response, {
       experimental_onFunctionCall: async (

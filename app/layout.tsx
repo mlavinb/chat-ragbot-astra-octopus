@@ -3,8 +3,8 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata = {
-  title: "RAGBot Starter",
-  description: "RAGBot Starter - Powered by DataStax and Vercel",
+  title: "Octopus RAGBot",
+  description: "Octopus RAGBot IA Agent",
 };
 
 export default function RootLayout({ children }) {
